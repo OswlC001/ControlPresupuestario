@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PresupuestoViewDlg" widgetVar="PresupuestoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPresupuestoTitle}">
+            <h:form id="PresupuestoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{presupuestoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPresupuestoLabel_idPresupuesto}"/>
+                        <h:outputText value="#{presupuestoController.selected.idPresupuesto}" title="#{bundle.ViewPresupuestoTitle_idPresupuesto}"/>
+                        <h:outputText value="#{bundle.ViewPresupuestoLabel_concepto}"/>
+                        <h:outputText value="#{presupuestoController.selected.concepto}" title="#{bundle.ViewPresupuestoTitle_concepto}"/>
+                        <h:outputText value="#{bundle.ViewPresupuestoLabel_cantidad}"/>
+                        <h:outputText value="#{presupuestoController.selected.cantidad}" title="#{bundle.ViewPresupuestoTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewPresupuestoLabel_PUnitario}"/>
+                        <h:outputText value="#{presupuestoController.selected.PUnitario}" title="#{bundle.ViewPresupuestoTitle_PUnitario}"/>
+                        <h:outputText value="#{bundle.ViewPresupuestoLabel_categoria}"/>
+                        <h:outputText value="#{presupuestoController.selected.categoria}" title="#{bundle.ViewPresupuestoTitle_categoria}"/>
+                        <h:outputText value="#{bundle.ViewPresupuestoLabel_etapa}"/>
+                        <h:outputText value="#{presupuestoController.selected.etapa}" title="#{bundle.ViewPresupuestoTitle_etapa}"/>
+                        <h:outputText value="#{bundle.ViewPresupuestoLabel_unidadDeMedida}"/>
+                        <h:outputText value="#{presupuestoController.selected.unidadDeMedida}" title="#{bundle.ViewPresupuestoTitle_unidadDeMedida}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PresupuestoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

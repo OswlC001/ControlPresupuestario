@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnidadDeMedidaCreateDlg" widgetVar="UnidadDeMedidaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUnidadDeMedidaTitle}">
+            <h:form id="UnidadDeMedidaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{unidadDeMedidaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUnidadDeMedidaLabel_idUnidad}" for="idUnidad" />
+                        <p:inputText id="idUnidad" value="#{unidadDeMedidaController.selected.idUnidad}" title="#{bundle.CreateUnidadDeMedidaTitle_idUnidad}" required="true" requiredMessage="#{bundle.CreateUnidadDeMedidaRequiredMessage_idUnidad}"/>
+                        <p:outputLabel value="#{bundle.CreateUnidadDeMedidaLabel_descriUnidad}" for="descriUnidad" />
+                        <p:inputText id="descriUnidad" value="#{unidadDeMedidaController.selected.descriUnidad}" title="#{bundle.CreateUnidadDeMedidaTitle_descriUnidad}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{unidadDeMedidaController.create}" value="#{bundle.Save}" update="display,:UnidadDeMedidaListForm:datalist,:growl" oncomplete="handleSubmit(args,'UnidadDeMedidaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UnidadDeMedidaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GastosEditDlg" widgetVar="GastosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditGastosTitle}">
+            <h:form id="GastosEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{gastosController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditGastosLabel_idGastos}" for="idGastos" />
+                        <p:inputText id="idGastos" value="#{gastosController.selected.idGastos}" title="#{bundle.EditGastosTitle_idGastos}" required="true" requiredMessage="#{bundle.EditGastosRequiredMessage_idGastos}"/>
+                        <p:outputLabel value="#{bundle.EditGastosLabel_fechaGastos}" for="fechaGastos" />
+                        <p:inputText id="fechaGastos" value="#{gastosController.selected.fechaGastos}" title="#{bundle.EditGastosTitle_fechaGastos}" />
+                        <p:outputLabel value="#{bundle.EditGastosLabel_cantidadGastos}" for="cantidadGastos" />
+                        <p:inputText id="cantidadGastos" value="#{gastosController.selected.cantidadGastos}" title="#{bundle.EditGastosTitle_cantidadGastos}" />
+                        <p:outputLabel value="#{bundle.EditGastosLabel_PUnitarioGastos}" for="PUnitarioGastos" />
+                        <p:inputText id="PUnitarioGastos" value="#{gastosController.selected.PUnitarioGastos}" title="#{bundle.EditGastosTitle_PUnitarioGastos}" />
+                        <p:outputLabel value="#{bundle.EditGastosLabel_gastosTipo}" for="gastosTipo" />
+                        <p:selectOneMenu id="gastosTipo" value="#{gastosController.selected.gastosTipo}" required="true" requiredMessage="#{bundle.EditGastosRequiredMessage_gastosTipo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{gastosTipoController.itemsAvailableSelectOne}"
+                                           var="gastosTipoItem"
+                                           itemValue="#{gastosTipoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditGastosLabel_presupuesto}" for="presupuesto" />
+                        <p:selectOneMenu id="presupuesto" value="#{gastosController.selected.presupuesto}" required="true" requiredMessage="#{bundle.EditGastosRequiredMessage_presupuesto}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{presupuestoController.itemsAvailableSelectOne}"
+                                           var="presupuestoItem"
+                                           itemValue="#{presupuestoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{gastosController.update}" value="#{bundle.Save}" update="display,:GastosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GastosEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GastosEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

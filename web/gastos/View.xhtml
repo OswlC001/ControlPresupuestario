@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GastosViewDlg" widgetVar="GastosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewGastosTitle}">
+            <h:form id="GastosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{gastosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewGastosLabel_idGastos}"/>
+                        <h:outputText value="#{gastosController.selected.idGastos}" title="#{bundle.ViewGastosTitle_idGastos}"/>
+                        <h:outputText value="#{bundle.ViewGastosLabel_fechaGastos}"/>
+                        <h:outputText value="#{gastosController.selected.fechaGastos}" title="#{bundle.ViewGastosTitle_fechaGastos}"/>
+                        <h:outputText value="#{bundle.ViewGastosLabel_cantidadGastos}"/>
+                        <h:outputText value="#{gastosController.selected.cantidadGastos}" title="#{bundle.ViewGastosTitle_cantidadGastos}"/>
+                        <h:outputText value="#{bundle.ViewGastosLabel_PUnitarioGastos}"/>
+                        <h:outputText value="#{gastosController.selected.PUnitarioGastos}" title="#{bundle.ViewGastosTitle_PUnitarioGastos}"/>
+                        <h:outputText value="#{bundle.ViewGastosLabel_gastosTipo}"/>
+                        <h:outputText value="#{gastosController.selected.gastosTipo}" title="#{bundle.ViewGastosTitle_gastosTipo}"/>
+                        <h:outputText value="#{bundle.ViewGastosLabel_presupuesto}"/>
+                        <h:outputText value="#{gastosController.selected.presupuesto}" title="#{bundle.ViewGastosTitle_presupuesto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="GastosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

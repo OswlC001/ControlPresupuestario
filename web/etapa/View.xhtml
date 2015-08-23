@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtapaViewDlg" widgetVar="EtapaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEtapaTitle}">
+            <h:form id="EtapaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{etapaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEtapaLabel_idEtapa}"/>
+                        <h:outputText value="#{etapaController.selected.idEtapa}" title="#{bundle.ViewEtapaTitle_idEtapa}"/>
+                        <h:outputText value="#{bundle.ViewEtapaLabel_descriEtapa}"/>
+                        <h:outputText value="#{etapaController.selected.descriEtapa}" title="#{bundle.ViewEtapaTitle_descriEtapa}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EtapaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
