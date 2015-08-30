@@ -6,17 +6,19 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,18 +38,16 @@ public class Gastos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idGastos")
     private Integer idGastos;
-    @Size(max = 45)
     @Column(name = "fecha_Gastos")
-    private String fechaGastos;
-    @Size(max = 45)
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaGastos;
     @Column(name = "cantidad_Gastos")
-    private String cantidadGastos;
-    @Size(max = 45)
+    private Float cantidadGastos;
     @Column(name = "p_Unitario_Gastos")
-    private String pUnitarioGastos;
+    private Float pUnitarioGastos;
     @JoinColumn(name = "id_Gastos_Tipo", referencedColumnName = "id_Gastos_Tipo")
     @ManyToOne(optional = false)
     private GastosTipo gastosTipo;
@@ -70,27 +70,27 @@ public class Gastos implements Serializable {
         this.idGastos = idGastos;
     }
 
-    public String getFechaGastos() {
+    public Date getFechaGastos() {
         return fechaGastos;
     }
 
-    public void setFechaGastos(String fechaGastos) {
+    public void setFechaGastos(Date fechaGastos) {
         this.fechaGastos = fechaGastos;
     }
 
-    public String getCantidadGastos() {
+    public Float getCantidadGastos() {
         return cantidadGastos;
     }
 
-    public void setCantidadGastos(String cantidadGastos) {
+    public void setCantidadGastos(Float cantidadGastos) {
         this.cantidadGastos = cantidadGastos;
     }
 
-    public String getPUnitarioGastos() {
+    public Float getPUnitarioGastos() {
         return pUnitarioGastos;
     }
 
-    public void setPUnitarioGastos(String pUnitarioGastos) {
+    public void setPUnitarioGastos(Float pUnitarioGastos) {
         this.pUnitarioGastos = pUnitarioGastos;
     }
 

@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,7 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -40,16 +41,16 @@ public class Presupuesto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Presupuesto")
     private Integer idPresupuesto;
     @Size(max = 45)
     @Column(name = "concepto")
     private String concepto;
     @Column(name = "cantidad")
-    private Long cantidad;
+    private Float cantidad;
     @Column(name = "p_Unitario")
-    private Long pUnitario;
+    private Float pUnitario;
     @JoinColumn(name = "id_Categ", referencedColumnName = "id_Categ")
     @ManyToOne(optional = false)
     private Categoria categoria;
@@ -85,19 +86,19 @@ public class Presupuesto implements Serializable {
         this.concepto = concepto;
     }
 
-    public Long getCantidad() {
+    public Float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Long cantidad) {
+    public void setCantidad(Float cantidad) {
         this.cantidad = cantidad;
     }
 
-    public Long getPUnitario() {
+    public Float getPUnitario() {
         return pUnitario;
     }
 
-    public void setPUnitario(Long pUnitario) {
+    public void setPUnitario(Float pUnitario) {
         this.pUnitario = pUnitario;
     }
 
