@@ -37,7 +37,27 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListGastosTitle_fechaGastos}"/>
                             </f:facet>
-                            <h:outputText value="#{item.fechaGastos}"/>
+                            <h:outputText value="#{item.fechaGastos}">
+                                <f:convertDateTime type="date" pattern="dd/MMM/yyyy"/>
+                            </h:outputText>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGastosTitle_gastosTipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gastosTipo.descriGastosTipo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.Descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descriGasto}"/>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGastosTitle_presupuesto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.presupuesto.concepto}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -50,19 +70,14 @@
                                 <h:outputText value="#{bundle.ListGastosTitle_PUnitarioGastos}"/>
                             </f:facet>
                             <h:outputText value="#{item.PUnitarioGastos}"/>
-                        </p:column>
+                        </p:column>   
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGastosTitle_gastosTipo}"/>
+                                <h:outputText value="#{bundle.CostoTotal}"/>
                             </f:facet>
-                            <h:outputText value="#{item.gastosTipo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGastosTitle_presupuesto}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.presupuesto}"/>
-                        </p:column>
+                            <h:outputText value="#{item.cantidadGastos * item.PUnitarioGastos}"/>
+                        </p:column>   
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{gastosController.prepareCreate}" update=":GastosCreateForm" oncomplete="PF('GastosCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":GastosViewForm" oncomplete="PF('GastosViewDialog').show()" disabled="#{empty gastosController.selected}"/>

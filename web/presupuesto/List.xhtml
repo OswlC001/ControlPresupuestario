@@ -33,6 +33,18 @@
                             </f:facet>
                             <h:outputText value="#{item.idPresupuesto}"/>
                         </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPresupuestoTitle_categoria}"/>
+                            </f:facet>
+                             <h:outputText value="#{item.categoria.descriCateg}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPresupuestoTitle_etapa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etapa.descriEtapa}"/>
+                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPresupuestoTitle_concepto}"/>
@@ -45,30 +57,25 @@
                             </f:facet>
                             <h:outputText value="#{item.cantidad}"/>
                         </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPresupuestoTitle_unidadDeMedida}"/>
+                            </f:facet>
+                             <h:outputText value="#{item.unidadDeMedida.descriUnidad}"/>
+                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPresupuestoTitle_PUnitario}"/>
                             </f:facet>
                             <h:outputText value="#{item.PUnitario}"/>
                         </p:column>
-                        <p:column>
+                       <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPresupuestoTitle_categoria}"/>
+                                <h:outputText value="#{bundle.CostoTotal}"/>
                             </f:facet>
-                            <h:outputText value="#{item.categoria}"/>
+                            <h:outputText value="#{item.cantidad * item.PUnitario}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPresupuestoTitle_etapa}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.etapa}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPresupuestoTitle_unidadDeMedida}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.unidadDeMedida}"/>
-                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{presupuestoController.prepareCreate}" update=":PresupuestoCreateForm" oncomplete="PF('PresupuestoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PresupuestoViewForm" oncomplete="PF('PresupuestoViewDialog').show()" disabled="#{empty presupuestoController.selected}"/>

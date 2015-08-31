@@ -12,18 +12,30 @@
             <h:form id="GastosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{gastosController.selected != null}">
-                        <h:outputText value="#{bundle.ViewGastosLabel_idGastos}"/>
-                        <h:outputText value="#{gastosController.selected.idGastos}" title="#{bundle.ViewGastosTitle_idGastos}"/>
-                        <h:outputText value="#{bundle.ViewGastosLabel_fechaGastos}"/>
-                        <h:outputText value="#{gastosController.selected.fechaGastos}" title="#{bundle.ViewGastosTitle_fechaGastos}"/>
-                        <h:outputText value="#{bundle.ViewGastosLabel_cantidadGastos}"/>
-                        <h:outputText value="#{gastosController.selected.cantidadGastos}" title="#{bundle.ViewGastosTitle_cantidadGastos}"/>
-                        <h:outputText value="#{bundle.ViewGastosLabel_PUnitarioGastos}"/>
-                        <h:outputText value="#{gastosController.selected.PUnitarioGastos}" title="#{bundle.ViewGastosTitle_PUnitarioGastos}"/>
-                        <h:outputText value="#{bundle.ViewGastosLabel_gastosTipo}"/>
-                        <h:outputText value="#{gastosController.selected.gastosTipo}" title="#{bundle.ViewGastosTitle_gastosTipo}"/>
-                        <h:outputText value="#{bundle.ViewGastosLabel_presupuesto}"/>
-                        <h:outputText value="#{gastosController.selected.presupuesto}" title="#{bundle.ViewGastosTitle_presupuesto}"/>
+                        <p:outputLabel value="#{bundle.CreateGastosLabel_fechaGastos}" for="fechaGastos" />
+                        <p:calendar id="fechaGastos" value="#{gastosController.selected.fechaGastos}" pattern="dd/MMM/yyyy"/>                        
+                        <p:outputLabel value="#{bundle.CreateGastosLabel_gastosTipo}" for="gastosTipo" />
+                        <p:selectOneMenu id="gastosTipo" value="#{gastosController.selected.gastosTipo}" required="true" requiredMessage="#{bundle.EditGastosRequiredMessage_gastosTipo}">
+                            <f:selectItems value="#{gastosTipoController.itemsAvailableSelectOne}"
+                                           var="gastosTipoItem"
+                                           itemValue="#{gastosTipoItem}"
+                                           itemLabel="#{gastosTipoItem.descriGastosTipo}"/>                     
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateGastosLabel_presupuesto}" for="presupuesto" />
+                        <p:selectOneMenu id="presupuesto" value="#{gastosController.selected.presupuesto}" required="true" requiredMessage="#{bundle.EditGastosRequiredMessage_presupuesto}">
+                            <f:selectItems value="#{presupuestoController.itemsAvailableSelectOne}"
+                                           var="presupuestoItem"
+                                           itemValue="#{presupuestoItem}"
+                                           itemLabel="#{presupuestoItem.concepto}" />
+                        </p:selectOneMenu>                        
+                        <p:outputLabel value="#{bundle.Descripcion}" for="Descripcion" />
+                        <p:inputText id="Descripcion" value="#{gastosController.selected.descriGasto}" title="#{bundle.DescripcionTitulo}" />
+                        <p:outputLabel value="#{bundle.CreateGastosLabel_cantidadGastos}" for="cantidadGastos" />
+                        <p:inputText id="cantidadGastos" value="#{gastosController.selected.cantidadGastos}" title="#{bundle.CreateGastosTitle_cantidadGastos}" />
+                        <p:outputLabel value="#{bundle.CreateGastosLabel_PUnitarioGastos}" for="PUnitarioGastos" />
+                        <p:inputText id="PUnitarioGastos" value="#{gastosController.selected.PUnitarioGastos}" title="#{bundle.CreateGastosTitle_PUnitarioGastos}" />
+
+
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="GastosViewDialog.hide()"/>
                 </h:panelGroup>

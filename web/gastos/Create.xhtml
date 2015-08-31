@@ -13,17 +13,13 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{gastosController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateGastosLabel_fechaGastos}" for="fechaGastos" />
-                        <p:calendar id="fechaGastos" value="#{gastosController.selected.fechaGastos}" pattern="dd/mm/yyyy"/>
-                        <p:outputLabel value="#{bundle.CreateGastosLabel_cantidadGastos}" for="cantidadGastos" />
-                        <p:inputText id="cantidadGastos" value="#{gastosController.selected.cantidadGastos}" title="#{bundle.CreateGastosTitle_cantidadGastos}" />
-                        <p:outputLabel value="#{bundle.CreateGastosLabel_PUnitarioGastos}" for="PUnitarioGastos" />
-                        <p:inputText id="PUnitarioGastos" value="#{gastosController.selected.PUnitarioGastos}" title="#{bundle.CreateGastosTitle_PUnitarioGastos}" />
+                        <p:calendar id="fechaGastos" value="#{gastosController.selected.fechaGastos}" pattern="dd/MMM/yyyy"/>                        
                         <p:outputLabel value="#{bundle.CreateGastosLabel_gastosTipo}" for="gastosTipo" />
                         <p:selectOneMenu id="gastosTipo" value="#{gastosController.selected.gastosTipo}" required="true" requiredMessage="#{bundle.EditGastosRequiredMessage_gastosTipo}">
                             <f:selectItems value="#{gastosTipoController.itemsAvailableSelectOne}"
                                            var="gastosTipoItem"
                                            itemValue="#{gastosTipoItem}"
-                                           itemLabel="#{gastosTipoItem.descriGastosTipo}"/>
+                                           itemLabel="#{gastosTipoItem.descriGastosTipo}"/>                     
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateGastosLabel_presupuesto}" for="presupuesto" />
                         <p:selectOneMenu id="presupuesto" value="#{gastosController.selected.presupuesto}" required="true" requiredMessage="#{bundle.EditGastosRequiredMessage_presupuesto}">
@@ -31,7 +27,15 @@
                                            var="presupuestoItem"
                                            itemValue="#{presupuestoItem}"
                                            itemLabel="#{presupuestoItem.concepto}" />
-                        </p:selectOneMenu>
+                        </p:selectOneMenu>                        
+                        <p:outputLabel value="#{bundle.Descripcion}" for="Descripcion" />
+                        <p:inputText id="Descripcion" value="#{gastosController.selected.descriGasto}" title="#{bundle.DescripcionTitulo}" />
+                        <p:outputLabel value="#{bundle.CreateGastosLabel_cantidadGastos}" for="cantidadGastos" />
+                        <p:inputText id="cantidadGastos" value="#{gastosController.selected.cantidadGastos}" title="#{bundle.CreateGastosTitle_cantidadGastos}" />
+                        <p:outputLabel value="#{bundle.CreateGastosLabel_PUnitarioGastos}" for="PUnitarioGastos" />
+                        <p:inputText id="PUnitarioGastos" value="#{gastosController.selected.PUnitarioGastos}" title="#{bundle.CreateGastosTitle_PUnitarioGastos}" />
+
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{gastosController.create}" value="#{bundle.Save}" update="display,:GastosListForm:datalist,:growl" oncomplete="handleSubmit(args,'GastosCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="GastosCreateDialog.hide()"/>

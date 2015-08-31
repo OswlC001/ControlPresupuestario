@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Gastos.findByCantidadGastos", query = "SELECT g FROM Gastos g WHERE g.cantidadGastos = :cantidadGastos"),
     @NamedQuery(name = "Gastos.findByPUnitarioGastos", query = "SELECT g FROM Gastos g WHERE g.pUnitarioGastos = :pUnitarioGastos")})
 public class Gastos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -44,6 +45,8 @@ public class Gastos implements Serializable {
     @Column(name = "fecha_Gastos")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaGastos;
+    @Column(name = "descri_Gasto")
+    private String descriGasto;
     @Column(name = "cantidad_Gastos")
     private Float cantidadGastos;
     @Column(name = "p_Unitario_Gastos")
@@ -110,6 +113,14 @@ public class Gastos implements Serializable {
         this.presupuesto = presupuesto;
     }
 
+    public String getDescriGasto() {
+        return descriGasto;
+    }
+
+    public void setDescriGasto(String descriGasto) {
+        this.descriGasto = descriGasto;
+    }    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -134,5 +145,5 @@ public class Gastos implements Serializable {
     public String toString() {
         return "entidades.Gastos[ idGastos=" + idGastos + " ]";
     }
-    
+
 }
