@@ -11,7 +11,7 @@
         <p:dialog id="GastosEditDlg" widgetVar="GastosEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditGastosTitle}">
             <h:form id="GastosEditForm">
                 <h:panelGroup id="display">
-                   <p:panelGrid columns="2" rendered="#{gastosController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{gastosController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateGastosLabel_fechaGastos}" for="fechaGastos" />
                         <p:calendar id="fechaGastos" value="#{gastosController.selected.fechaGastos}" pattern="dd/MMM/yyyy"/>                        
                         <p:outputLabel value="#{bundle.CreateGastosLabel_gastosTipo}" for="gastosTipo" />
@@ -35,6 +35,8 @@
                         <p:outputLabel value="#{bundle.CreateGastosLabel_PUnitarioGastos}" for="PUnitarioGastos" />
                         <p:inputText id="PUnitarioGastos" value="#{gastosController.selected.PUnitarioGastos}" title="#{bundle.CreateGastosTitle_PUnitarioGastos}" />
 
+                        <p:outputLabel value="#{bundle.CalcularIva}" for="CalcularIva" />
+                        <p:selectBooleanCheckbox value="#{gastosController.selected.calculaIVA}" id="CalcularIva"/>                        
 
                     </p:panelGrid>
                     <p:commandButton actionListener="#{gastosController.update}" value="#{bundle.Save}" update="display,:GastosListForm:datalist,:growl" oncomplete="handleSubmit(args, 'GastosEditDialog');"/>

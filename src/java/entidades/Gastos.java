@@ -51,6 +51,8 @@ public class Gastos implements Serializable {
     private Float cantidadGastos;
     @Column(name = "p_Unitario_Gastos")
     private Float pUnitarioGastos;
+    @Column(name = "calculaIVA")
+    private Boolean calculaIVA;    
     @JoinColumn(name = "id_Gastos_Tipo", referencedColumnName = "id_Gastos_Tipo")
     @ManyToOne(optional = false)
     private GastosTipo gastosTipo;
@@ -72,6 +74,15 @@ public class Gastos implements Serializable {
     public void setIdGastos(Integer idGastos) {
         this.idGastos = idGastos;
     }
+
+    public Boolean getCalculaIVA() {
+        return calculaIVA;
+    }
+
+    public void setCalculaIVA(Boolean calculaIVA) {
+        this.calculaIVA = calculaIVA;
+    }   
+    
 
     public Date getFechaGastos() {
         return fechaGastos;
